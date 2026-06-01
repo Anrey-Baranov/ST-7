@@ -34,18 +34,8 @@ public class Task3 {
         
         for (int i = 0; i < times.size(); i++) {
             String time = (String) times.get(i);
-            // Обработка чисел с плавающей точкой
-            Object tempObj = temperatures.get(i);
-            Object rainObj = rains.get(i);
-            double temp = 0.0;
-            double rain = 0.0;
-            
-            if (tempObj instanceof Number) {
-                temp = ((Number) tempObj).doubleValue();
-            }
-            if (rainObj instanceof Number) {
-                rain = ((Number) rainObj).doubleValue();
-            }
+            double temp = (double) temperatures.get(i);
+            double rain = (double) rains.get(i);
             
             System.out.printf("| %-2d | %-20s | %-12.1f | %-10.2f |\n", i + 1, time, temp, rain);
         }
@@ -53,7 +43,7 @@ public class Task3 {
         
         java.io.File resultDir = new java.io.File("result");
         if (!resultDir.exists()) {
-            resultDir.mkdirs();
+            resultDir.mkdir();
         }
         
         try (PrintWriter writer = new PrintWriter(new FileWriter("result/forecast.txt"))) {
@@ -64,8 +54,8 @@ public class Task3 {
             
             for (int i = 0; i < times.size(); i++) {
                 String time = (String) times.get(i);
-                double temp = ((Number) temperatures.get(i)).doubleValue();
-                double rain = ((Number) rains.get(i)).doubleValue();
+                double temp = (double) temperatures.get(i);
+                double rain = (double) rains.get(i);
                 
                 writer.printf("| %-2d | %-20s | %-12.1f | %-10.2f |\n", i + 1, time, temp, rain);
             }
